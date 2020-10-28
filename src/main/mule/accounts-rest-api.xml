@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="ad3187b4-132a-4095-b877-8e25d8af3f3e" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="accounts-rest-apiFlow" doc:id="c294eccd-c32d-418e-8d5d-2e6177746317" >
+		<http:listener doc:name="Listener" doc:id="b0a63deb-d1d2-4c78-8457-dd30b290bec0" config-ref="HTTP_Listener_config" path="/accounts/{accountId}"/>
+		<file:read doc:name="Read" doc:id="6bee00f7-ea50-4a27-9dc9-0a36a696e4ad" path="D:\muledemo\mule-graphql-accounts-demo\src\main\resources\accounts.json"/>
+	</flow>
+	<flow name="accounts-rest-apiFlow1" doc:id="24561db4-864c-4c13-93dd-fb711fcec27a" >
+		<http:listener doc:name="Listener" doc:id="a54f9c0a-1c0f-47f1-8a37-c2c81454a1d6" config-ref="HTTP_Listener_config" path="/accounts/{accountId}/balances"/>
+		<file:read doc:name="Read" doc:id="6f606678-4249-4da7-a2bd-fb383e81e128" path="D:\muledemo\mule-graphql-accounts-demo\src\main\resources\balances.json"/>
+	</flow>
+	<flow name="accounts-rest-apiFlow2" doc:id="51214649-a14c-44c7-8b36-3ad861e503c8" >
+		<http:listener doc:name="Listener" doc:id="f7c9998f-9be9-473f-a272-1deba01714ee" config-ref="HTTP_Listener_config" path="/accounts/{accountId}/transactions"/>
+		<file:read doc:name="Read" doc:id="ecf381ff-7926-4525-83f0-1a497a364764" path="D:\muledemo\mule-graphql-accounts-demo\src\main\resources\transaction.json"/>
+	</flow>
+</mule>

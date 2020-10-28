@@ -1,0 +1,36 @@
+schema {
+	query: Query
+}
+
+type Query{
+	account(
+		id: String
+	): Account
+}
+
+type Account {
+	id: String
+	firstName: String
+	lastName:String
+	address: String
+	phone: String
+	website: String
+	company:String
+	accountType: String
+	balances: [Balance]
+	transactions: [Transaction]
+}
+
+type Balance{
+	balanceType: String
+	amount: Float
+}
+
+type Transaction{
+	transactionId: String
+	description: String
+	amount: Float
+	currency: String
+	transactionDate: String
+}
+
